@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import background from './img/mario-calvo-345-unsplash.jpg'
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="container">
+
+          <div className="nav-scroller py-1 mb-2">
+            <nav className="nav d-flex justify-content-between">
+              <a className="p-2 text-muted" href="#">Facebook vs. Apple</a>
+              <a className="p-2 text-muted" href="#">Facebook vs. Apple</a>
+              <a className="p-2 text-muted" href="#">Facebook vs. Apple</a>
+              <a className="p-2 text-muted" href="#">Facebook vs. Apple</a>
+            </nav>
+          </div>
+
+          <div className="intro-title">
+            <h1 className="display-1">
+              Spectrum
+            </h1>
+          </div>
+        </div>
+          <img id="landing-page-img" src={background} className="img-fluid" alt="subway-background"/>
+          <h3>Gathering media from different perspectives for you</h3>
       </div>
     );
   }
