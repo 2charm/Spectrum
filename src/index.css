@@ -24,11 +24,8 @@ h1 {
 }
 
 h3 {
-  color:white;
-  position: absolute;
-  top: 34%;
-  left:34%;
-  z-index: -1;
+  color: #cccccc;
+  margin-top: 2.5rem;
 }
 
 a {
@@ -37,4 +34,20 @@ a {
 
 #landing-page-img {
   opacity: 0.35;
+}
+
+@media (max-width: 900px) {
+  .display-1 {
+    font-weight: 500;
+    font-size: 4rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h3 {
+    font-size: 1rem;
+  }
 }

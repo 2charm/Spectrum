@@ -21,10 +21,14 @@ class App extends Component {
             <h1 className="display-1">
               Spectrum
             </h1>
+            <h3>
+              Gathering media from different perspectives for you
+            </h3>
           </div>
         </div>
+        <div className="landing-box">
           <img id="landing-page-img" src={background} className="img-fluid" alt="subway-background"/>
-          <h3>Gathering media from different perspectives for you</h3>
+        </div>
       </div>
     );
   }
