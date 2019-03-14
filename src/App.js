@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
-import background from './img/mario-calvo-345-unsplash.jpg'
+import background from './img/mario-calvo-345-unsplash.jpg';
+import {Button, Collapse} from 'react-bootstrap'
 import './App.css';
 
 class App extends Component {
@@ -8,7 +9,7 @@ class App extends Component {
     return (
       <Router basename={process.env.PUBLIC_URL+'/'}>
         <div className="App">
-          <NavSwitch/>
+          <NavSwitch articles={this.props.articles}/>
         </div>
       </Router>
     );
@@ -32,6 +33,68 @@ class LandingPage extends Component {
         </div>
         <div className="landing-box">
           <img id="landing-page-img" src={background} className="img-fluid" alt="subway-background"/>
+        </div>
+      </div>
+    )
+  }
+}
+
+class NewsPage extends Component {
+  constructor(props, context) {
+    super(props, context);
+    
+    this.state = {
+      open:false,
+    }
+  }
+  render() {
+    const { open } = this.state
+    return (
+      <div className="Landing">
+        <div className="container">
+          <NavBar/>
+          <div className="intro-title">
+            <h1 className="display-1">
+              <Link to="/">Spectrum</Link>
+            </h1>
+            <h3>
+              Gathering media from different perspectives for you
+            </h3>
+          </div>
+        </div>
+        <div className="landing-box">
+          <img id="landing-page-img" src={background} className="img-fluid" alt="subway-background"/>
+        </div>
+        <div>
+          <Button className="reveal-articles" onClick={() => this.setState({open: !open})} aria-controls="collapse-articles" aria-expanded={open}> Click </Button>
+          <Collapse in={this.state.open}>
+            <div>
+              <NewsItem/>
+              <NewsItem/>
+              <NewsItem/>
+              <NewsItem/>
+            </div>
+          </Collapse>
+        </div>
+      </div>
+    )
+  }
+}
+
+class NewsItem extends Component {
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-4 logo-side">
+            <div className="logo">
+              <img className="img-fluid logo-img" src="https://icon-locator.herokuapp.com/icon?url=https://www.aftenposten.no&size=70..120..200" alt={this.props.sourceName}/>
+            </div>
+          </div>
+          <div className="col-lg-8">
+            <h3 className="text-left">NPR / /</h3>
+            <p className="text-left article-desc">The booze bust in Rotterdam comes on the eve of Kim Jong Un's meeting with President Trump in Vietnam and is a breach of U.N. sanctions banning the export of luxury goods to the communist country.</p>
+          </div> 
         </div>
       </div>
     )
@@ -107,6 +170,7 @@ class AboutPage extends Component {
   }
 }
 
+
 class NavBar extends Component {
   render() {
     return (
@@ -127,7 +191,7 @@ class NavSwitch extends Component {
   render () {
     return (
       <Switch>
-        <Route exact path="/" component={LandingPage}/>
+        <Route exact path="/" component={NewsPage}/>
         <Route path="/about" component={AboutPage}/>
       </Switch>
     )

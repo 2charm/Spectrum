@@ -55,6 +55,33 @@ label {
   margin-top:2rem;
 }
 
+.reveal-articles {
+  background-color: black;
+  border-color: black;
+}
+
+.reveal-articles:hover {
+  background-color:white;
+}
+
+.article-desc {
+  color: white;
+}
+
+.logo {
+  margin-top: 2.5rem;
+  background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2000px-Solid_white.svg.png');
+  background-color:white;
+}
+
+.logo-img {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+  padding-left : 1rem;
+  opacity: .8;
+}
+
 @media (max-width: 900px) {
   .display-1 {
     font-weight: 500;
