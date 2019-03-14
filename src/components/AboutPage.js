@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import NavBar from '../App'
-import {BrowserRouter as Link} from "react-router-dom";
+import {NavBar} from '../App.js'
+
 export class AboutPage extends Component {
     render() {
       return (
@@ -8,7 +8,7 @@ export class AboutPage extends Component {
           <NavBar/>
           <div classNmae="intro-title">
             <h1 className="display-1">
-              <Link to="/about">About us</Link>
+              About us
             </h1>
           </div>
           <div className="row">
@@ -69,3 +69,5 @@ export class AboutPage extends Component {
       )
     }
   }
+
+export default AboutPage;
