@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Link} from "react-router-dom";
 import background from '../img/mario-calvo-345-unsplash.jpg';
 
 export class LandingPage extends Component {
