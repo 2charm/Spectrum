@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 
 export class NewsItem extends Component {
     render() {
+        // <a href={"http://"+this.props.option.url}>
+        //    <img className="img-fluid logo-img" src="">
+        // </a>
+        // <h3 className="text-left"> {this.props.option.source.name + ' / /'} </h3>
+        // <p className="text-left article-desc"> {this.props.option.description} </p> 
         return (
           <div className="container">
             <div className="row">

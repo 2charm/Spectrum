@@ -1,17 +1,15 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Link} from "react-router-dom";
-import NavBar from '../App';
-import background from './img/mario-calvo-345-unsplash.jpg';
+import background from '../img/mario-calvo-345-unsplash.jpg';
 
 export class LandingPage extends Component {
     render() {
       return (
         <div className="Landing">
           <div className="container">
-            <NavBar/>
             <div className="intro-title">
               <h1 className="display-1">
-                <Link to="/">Spectrum</Link>
+                Spectrum
               </h1>
               <h3>
                 Gathering media from different perspectives for you
@@ -25,3 +23,5 @@ export class LandingPage extends Component {
       )
     }
   }
+
+  export default LandingPage;

@@ -1,19 +1,34 @@
 import React, {Component} from 'react';
-import { NavBar } from '../App.js';
 import NewsItem from './NewsItem';
 import {Link, animateScroll as scroll} from "react-scroll";
 import background from '../img/mario-calvo-345-unsplash.jpg';
 export class NewsArticle extends Component {
+    constructor(props) {    
+        super(props);
+        this.state = {
+            headliner:{},
+            options:[],
+        }
+    }
 
-    componentDidMount () {
-
+    componentDidMount() {
+        //let len  = this.props.articles.length;
+        //let main = this.props.articles[0];
+        //let ops = this.props.articles.slice(1,len + 1)
+        //this.setState({
+        //    headliner:main,
+        //    options:ops,
+        //})
     }
 
     render() {
+        scroll.scrollToTop();
+        // <h1 className="display-1"> {this.props.headliner.title} </h1>
+        // <img id="landing-page-img" src={this.state.headliner.urlToImage} className="img-fluid" alt={this.state.headliner.title}/>
         return (
-          <div className="Landing">
+          <div className="news-article">
             <div className="container">
-              <NavBar/>
+              
               <div className="intro-title">
                 <h1 className="display-1">
                     Spectrum
@@ -37,6 +52,13 @@ export class NewsArticle extends Component {
                 <img id="arrow-down" src="http://www.richardpinkstone.com/wp-content/uploads/2018/08/down-arrow.png" alt="Arrow Down"/>
             </Link>
             <div className="news-items">
+                {
+                    //this.state.options.map((option) => {
+                    //    return (
+                    //        <NewsItem option={option}/>
+                    //    )
+                    // d})
+                }
                 <NewsItem/>
                 <NewsItem/>
                 <NewsItem/>

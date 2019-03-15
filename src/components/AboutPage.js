@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {NavBar} from '../App.js'
 
 export class AboutPage extends Component {
     render() {
       return (
         <div className="container">
-          <NavBar/>
-          <div classNmae="intro-title">
+          <div className="intro-title">
             <h1 className="display-1">
               About us
             </h1>
