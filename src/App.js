@@ -3,33 +3,52 @@ import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom"
 import {NewsArticle} from './components/NewsArticle.js';
 import {AboutPage} from './components/AboutPage.js';
 import {LandingPage} from './components/LandingPage.js'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import axios from 'axios'
+//import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        topics:["General", "Business", "Science", "Health"],
+        keys:[],
+        topics:[],
         articles:{},
       }
   }
 
   componentDidMount() {
-    let url = "api.spectrumnews.me/";
+    let url = "https://api.spectrumnews.me/v1/news";
 
+    axios
+      .get(url)
+      .then((response) => {
+        let keys = Object.keys(response.data);
+        let topics = [];
+        keys.forEach((topic) => {
+          topics.push(decodeURIComponent(topic))
+        })
+
+        this.setState({
+          keys:keys,
+          topics:topics,
+          articles:response.data
+        })
+      }).catch((err) => {
+        console.log(err.message);
+      })
   }
 
   render() {
+
     return (
       <Router basename={process.env.PUBLIC_URL+'/'}>
         <div className="App">
           <div className="container">
             <NavBar topics={this.state.topics}/>
           </div>
-          <NavSwitch articles={this.props.articles} topics={this.state.topics}/>
-        </div>
+            <NavSwitch articles={this.state.articles} topics={this.state.topics} keys={this.state.keys}/>
+          </div>
       </Router>
     );
   }
@@ -44,7 +63,7 @@ export class NavBar extends Component {
           {
             this.props.topics.map((headline) => {
               return(
-                <NavLink to={"/" + headline} className="p-2 text-muted">{headline}</NavLink>
+                <NavLink key={headline} to={"/" + headline} className="p-2 text-muted">{headline}</NavLink>
               )
             })
           } 
@@ -61,9 +80,9 @@ export class NavSwitch extends Component {
       <Switch>
         <Route exact path="/" component={LandingPage}/>
         {
-            this.props.topics.map((headline) => {
+            this.props.keys.map((headline) => {
               return(
-                <Route path={"/" + headline} render={(props) => <NewsArticle {...props} articles={this.props.articles[headline]}/>}/>
+                <Route key={headline} path={"/" + decodeURIComponent(headline)} render={(props) => <NewsArticle {...props} articles={this.props.articles[headline]} headline={headline}/>}/>
               )
             })
         } 

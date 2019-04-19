@@ -1,45 +1,34 @@
 import React, {Component} from 'react';
 import NewsItem from './NewsItem';
 import {Link, animateScroll as scroll} from "react-scroll";
-import background from '../img/mario-calvo-345-unsplash.jpg';
 export class NewsArticle extends Component {
     constructor(props) {    
         super(props);
+
+        let len  = this.props.articles.length;
+        let headliner = this.props.articles[0];
+        let options = this.props.articles.slice(1,len)
+
         this.state = {
-            headliner:{},
-            options:[],
+            headliner:headliner,
+            options:options
         }
-    }
 
-    componentDidMount() {
-        //let len  = this.props.articles.length;
-        //let main = this.props.articles[0];
-        //let ops = this.props.articles.slice(1,len + 1)
-        //this.setState({
-        //    headliner:main,
-        //    options:ops,
-        //})
     }
-
+    
     render() {
         scroll.scrollToTop();
-        // <h1 className="display-1"> {this.props.headliner.title} </h1>
-        // <img id="landing-page-img" src={this.state.headliner.urlToImage} className="img-fluid" alt={this.state.headliner.title}/>
         return (
           <div className="news-article">
             <div className="container">
-              
               <div className="intro-title">
-                <h1 className="display-1">
-                    Spectrum
+                <h1 className="display-1 headliner"> 
+                    {this.state.headliner.title}
                 </h1>
-                <h3>
-                  Gathering media from different perspectives for you
-                </h3>
               </div>
             </div>
             <div className="landing-box">
-              <img id="landing-page-img" src={background} className="img-fluid" alt="subway-background"/>
+                <img id="landing-page-img" src={this.state.headliner.urlToImage} className="img-fluid" alt={this.state.headliner.title}/>
             </div>
             <div>
             <Link 
@@ -53,16 +42,12 @@ export class NewsArticle extends Component {
             </Link>
             <div className="news-items">
                 {
-                    //this.state.options.map((option) => {
-                    //    return (
-                    //        <NewsItem option={option}/>
-                    //    )
-                    // d})
+                    this.state.options.map((option, i) => {
+                        return (
+                            <NewsItem key={i} option={option}/>
+                        )
+                    })
                 }
-                <NewsItem/>
-                <NewsItem/>
-                <NewsItem/>
-                <NewsItem/>
             </div>
             </div>
           </div>
