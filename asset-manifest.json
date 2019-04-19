@@ -1,16 +1,16 @@
 {
-  "main.css": "/Spectrum/static/css/main.86e2a847.chunk.css",
-  "main.js": "/Spectrum/static/js/main.e6c0609b.chunk.js",
-  "main.js.map": "/Spectrum/static/js/main.e6c0609b.chunk.js.map",
+  "main.css": "/Spectrum/static/css/main.5df7a86c.chunk.css",
+  "main.js": "/Spectrum/static/js/main.ca55bf2a.chunk.js",
+  "main.js.map": "/Spectrum/static/js/main.ca55bf2a.chunk.js.map",
   "runtime~main.js": "/Spectrum/static/js/runtime~main.dc80f048.js",
   "runtime~main.js.map": "/Spectrum/static/js/runtime~main.dc80f048.js.map",
   "static/css/2.cf0e8588.chunk.css": "/Spectrum/static/css/2.cf0e8588.chunk.css",
-  "static/js/2.34e2dffc.chunk.js": "/Spectrum/static/js/2.34e2dffc.chunk.js",
-  "static/js/2.34e2dffc.chunk.js.map": "/Spectrum/static/js/2.34e2dffc.chunk.js.map",
+  "static/js/2.d0b3b1c3.chunk.js": "/Spectrum/static/js/2.d0b3b1c3.chunk.js",
+  "static/js/2.d0b3b1c3.chunk.js.map": "/Spectrum/static/js/2.d0b3b1c3.chunk.js.map",
   "index.html": "/Spectrum/index.html",
-  "precache-manifest.3eac2d8aa310326a89b903607b56ec90.js": "/Spectrum/precache-manifest.3eac2d8aa310326a89b903607b56ec90.js",
+  "precache-manifest.52619ac0a5d32bbcbfcce9fa571a17c7.js": "/Spectrum/precache-manifest.52619ac0a5d32bbcbfcce9fa571a17c7.js",
   "service-worker.js": "/Spectrum/service-worker.js",
   "static/css/2.cf0e8588.chunk.css.map": "/Spectrum/static/css/2.cf0e8588.chunk.css.map",
-  "static/css/main.86e2a847.chunk.css.map": "/Spectrum/static/css/main.86e2a847.chunk.css.map",
+  "static/css/main.5df7a86c.chunk.css.map": "/Spectrum/static/css/main.5df7a86c.chunk.css.map",
   "static/media/mario-calvo-345-unsplash.jpg": "/Spectrum/static/media/mario-calvo-345-unsplash.97b822f4.jpg"
 }

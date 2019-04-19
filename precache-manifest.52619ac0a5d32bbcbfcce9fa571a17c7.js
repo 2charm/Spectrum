@@ -8,23 +8,23 @@ self.__precacheManifest = [
     "url": "/Spectrum/static/js/runtime~main.dc80f048.js"
   },
   {
-    "revision": "175bd418ae1410e2c806",
-    "url": "/Spectrum/static/js/main.e6c0609b.chunk.js"
+    "revision": "4a633b68833efb3851c5",
+    "url": "/Spectrum/static/js/main.ca55bf2a.chunk.js"
   },
   {
-    "revision": "e4c23a6bb24978dbb243",
-    "url": "/Spectrum/static/js/2.34e2dffc.chunk.js"
+    "revision": "3b6176d996791b6f6be7",
+    "url": "/Spectrum/static/js/2.d0b3b1c3.chunk.js"
   },
   {
-    "revision": "175bd418ae1410e2c806",
-    "url": "/Spectrum/static/css/main.86e2a847.chunk.css"
+    "revision": "4a633b68833efb3851c5",
+    "url": "/Spectrum/static/css/main.5df7a86c.chunk.css"
   },
   {
-    "revision": "e4c23a6bb24978dbb243",
+    "revision": "3b6176d996791b6f6be7",
     "url": "/Spectrum/static/css/2.cf0e8588.chunk.css"
   },
   {
-    "revision": "3367520734bd5a45b0e76aa3e01c6ef0",
+    "revision": "865bbe78a42027260399c2f61d84bb6c",
     "url": "/Spectrum/index.html"
   }
 ];
