@@ -2,7 +2,7 @@
   "name": "spectrum",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://2charm.github.io/Spectrum/",
+  "homepage": "http://spectrumnews.me",
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
