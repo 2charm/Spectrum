@@ -35,7 +35,8 @@ class App extends Component {
         })
       }).catch((err) => {
         console.log(err.message);
-        console.log(err.response.data)
+        console.log(err.request)
+        console.log(err.config)
       })
   }
 
