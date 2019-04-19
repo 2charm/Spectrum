@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom"
 import {NewsArticle} from './components/NewsArticle.js';
 import {AboutPage} from './components/AboutPage.js';
 import {LandingPage} from './components/LandingPage.js'
-//import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from 'axios';
 import './App.css';
 
@@ -36,6 +35,7 @@ class App extends Component {
         })
       }).catch((err) => {
         console.log(err.message);
+        console.log(err.response.data)
       })
   }
 
