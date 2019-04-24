@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom"
 import {NewsArticle} from './components/NewsArticle.js';
 import {AboutPage} from './components/AboutPage.js';
 import {LandingPage} from './components/LandingPage.js'
-import axios from 'axios';
+// import axios from 'axios'
 import './App.css';
 
 class App extends Component {
@@ -19,10 +19,13 @@ class App extends Component {
   componentDidMount() {
     let url = "https://api.spectrumnews.me/v1/news";
 
-    axios
-      .get(url)
+    fetch(url, { method: "GET", headers: {
+          "Content-Type": "text/plain"}})
       .then((response) => {
-        let keys = Object.keys(response.data);
+        return response.json
+      })
+      .then((data) => {
+        let keys = Object.keys(data);
         let topics = [];
         keys.forEach((topic) => {
           topics.push(decodeURIComponent(topic))
@@ -31,13 +34,32 @@ class App extends Component {
         this.setState({
           keys:keys,
           topics:topics,
-          articles:response.data
+          articles:data
         })
-      }).catch((err) => {
-        console.log(err.message);
-        console.log(err.request)
-        console.log(err.config)
       })
+      .catch((err) => {
+        console.log(err.message)
+      })
+
+    // axios
+    //   .get(url)
+    //   .then((response) => {
+    //     let keys = Object.keys(response.data);
+    //     let topics = [];
+    //     keys.forEach((topic) => {
+    //       topics.push(decodeURIComponent(topic))
+    //     })
+
+    //     this.setState({
+    //       keys:keys,
+    //       topics:topics,
+    //       articles:response.data
+    //     })
+    //   }).catch((err) => {
+    //     console.log(err.message);
+    //     console.log(err.request)
+    //     console.log(err.config)
+    //   })
   }
 
   render() {
