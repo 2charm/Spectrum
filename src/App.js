@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom";
-import {NewsArticle} from './components/NewsArticle.js';
 import {AboutPage} from './components/AboutPage.js';
 import {LandingPage} from './components/LandingPage.js'
-// import axios from 'axios'
 import './App.css';
 
 class App extends Component {
@@ -22,7 +20,7 @@ class App extends Component {
     fetch(url, { method: "GET", headers: {
           "Content-Type": "text/plain"}})
       .then((response) => {
-        return response.json
+        return response.json()
       })
       .then((data) => {
         let keys = Object.keys(data);
@@ -36,31 +34,12 @@ class App extends Component {
           topics:topics,
           articles:data
         })
+        console.log(data)
       })
       .catch((err) => {
         console.log(err.message)
       })
-
-    // axios
-    //   .get(url)
-    //   .then((response) => {
-    //     let keys = Object.keys(response.data);
-    //     let topics = [];
-    //     keys.forEach((topic) => {
-    //       topics.push(decodeURIComponent(topic))
-    //     })
-
-    //     this.setState({
-    //       keys:keys,
-    //       topics:topics,
-    //       articles:response.data
-    //     })
-    //   }).catch((err) => {
-    //     console.log(err.message);
-    //     console.log(err.request)
-    //     console.log(err.config)
-    //   })
-  }
+    }
 
   render() {
 
@@ -81,16 +60,10 @@ export class NavBar extends Component {
   render() {
     return (
       <div className="nav-scroller py-1 mb-2">
-        <nav className="nav d-flex justify-content-between">
+        <nav className="nav d-flex">
           <NavLink  exact to="/" className="p-2 text-muted">Home</NavLink>
-          {
-            this.props.topics.map((headline) => {
-              return(
-                <NavLink key={headline} to={"/" + headline} className="p-2 text-muted">{headline}</NavLink>
-              )
-            })
-          } 
-          <NavLink to="/about" className="p-2 text-muted">About</NavLink>
+          <NavLink  exact to="/" className="p-2 text-muted">Login</NavLink>
+          <NavLink to="/about" className="p-2 text-muted">About Us</NavLink>
         </nav>
       </div>
     )
@@ -102,13 +75,6 @@ export class NavSwitch extends Component {
     return (
       <Switch>
         <Route exact path="/" component={LandingPage}/>
-        {
-            this.props.keys.map((headline) => {
-              return(
-                <Route key={headline} path={"/" + decodeURIComponent(headline)} render={(props) => <NewsArticle {...props} articles={this.props.articles[headline]} headline={headline}/>}/>
-              )
-            })
-        } 
         <Route path="/about" component={AboutPage}/>
       </Switch>
     )

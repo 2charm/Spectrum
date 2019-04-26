@@ -4,7 +4,7 @@ import {Link, animateScroll as scroll} from "react-scroll";
 export class NewsArticle extends Component {
     constructor(props) {    
         super(props);
-
+        
         let len  = this.props.articles.length;
         let headliner = this.props.articles[0];
         let options = this.props.articles.slice(1,len)

@@ -1,46 +1,119 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Future',-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: 'Roboto', 'Future',-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: black;
 }
 
-.display-1 {
-  color:white;
-  font-weight: 500;
+.nav-scroller {
+  position: relative;
+}
+
+.nav {
+ position: absolute;
+ top: 3px;
+ right:16px;
 }
 
 .nav-scroller {
   margin-top: 2rem;
 }
 
-h1 {
-  margin-top: 2rem;
-}
-
 h3 {
-  color: #cccccc;
-  margin-top: 2.5rem;
+  color: #3F4C50;
+  font-size: 1.5rem;
 }
 
-h5 {
-  margin-top: 1rem;
-  color: #cccccc;
+h3:nth-of-type(1) {
+  margin-top: 1.5rem;
+}
+
+h3:nth-of-type(2) {
+  margin-bottom: 2.5rem;
+}
+
+.slider {
+  margin-bottom: 2rem;
+}
+
+.slick-slide img {
+  opacity: .4;
+}
+
+.slick-slide .slick-center {
+  opacity:1;
+}
+
+
+.slick-slide.slick-center img {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.slick-dots {
+  bottom: -65px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.carousel-item {
+  position: relative;
+}
+
+.slide__caption {
+  color: #F8F8F8;
+  font-weight: bold;
+  top:10px;
+  position: absolute;
+  width: 75%;
+  z-index: 2;
+}
+
+hr {
+  background: #E08D4F;
+  height  : .5rem;
+}
+
+#news-content {
+  position: relative;
+}
+
+#news-content-bar{
+  position: absolute;
+  bottom: .7rem;
+  left: 0;
+  right: 0;
+  height: .1rem;
+  background: black;
+}
+
+.shortBar {
+  margin-top:2rem;
+  width: 15%;
+}
+
+.longBar {
+  margin-top:5rem;
+  margin-bottom: 5rem;
+}
+
+h2 {
+  text-align: left;
+}
+
+p {
+  text-align: left;
 }
 
 a {
   color: white;
-}
-
-#landing-page-img {
-  opacity: 0.35;
-  height: 45rem;
-  width: 100%;
 }
 
 .card img {
@@ -56,6 +129,11 @@ a {
 
 label {
   color: white;
+}
+
+#no-picture {
+  margin-top:2.2rem;
+  margin-left: 2.9rem;
 }
 
 .card {
@@ -78,18 +156,11 @@ label {
   color: white;
 }
 
-.logo {
-  margin-top: 2.5rem;
-  background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2000px-Solid_white.svg.png');
-  background-color:white;
-}
-
 .logo-img {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding-right: 1rem;
-  padding-left : 1rem;
+  margin-bottom: 1.5rem;
   opacity: .8;
+  width: 240px;
+  height: 180px;
 }
 
 #arrow-down {
