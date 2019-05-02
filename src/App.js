@@ -11,6 +11,7 @@ class App extends Component {
         keys:[],
         topics:[],
         articles:{},
+        isLoaded: false
       }
   }
 
@@ -32,25 +33,25 @@ class App extends Component {
         this.setState({
           keys:keys,
           topics:topics,
-          articles:data
+          articles:data,
+          isLoaded:true
         })
         console.log(data)
       })
       .catch((err) => {
         console.log(err.message)
       })
-    }
+  }
 
   render() {
-
     return (
       <Router basename={process.env.PUBLIC_URL+'/'}>
         <div className="App">
           <div className="container">
-            <NavBar topics={this.state.topics}/>
+            <NavBar/>
           </div>
-            <NavSwitch articles={this.state.articles} topics={this.state.topics} keys={this.state.keys}/>
-          </div>
+          <NavSwitch articles={this.state.articles} topics={this.state.topics} keys={this.state.keys} isLoaded={this.state.isLoaded}/>
+        </div>
       </Router>
     );
   }
@@ -74,7 +75,7 @@ export class NavSwitch extends Component {
   render () {
     return (
       <Switch>
-        <Route exact path="/" component={LandingPage}/>
+        <Route exact path="/" render={(props) => <LandingPage {...props}/>}/>
         <Route path="/about" component={AboutPage}/>
       </Switch>
     )
