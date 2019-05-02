@@ -4,11 +4,11 @@ import NewsItem from './NewsItem.js'
 export class LandingPage extends Component {
     constructor(props) {
       super(props);
-      this.state = {category: "sports", loading: true};
+      console.log(this.props)
+      this.state = {category: "sports"};
     }
 
     render() {
-      if(this.props.isLoaded) {
         return (
           <div className="Landing">
             <div className="container">
@@ -24,14 +24,14 @@ export class LandingPage extends Component {
             </div>
             <div className="container">
               {
-                this.props.articles[this.state.category].forEach(article => {
-                  return <NewsItem {...article}/>
+                this.props.articles[this.state.category].map((article,i) => {
+                  return <NewsItem {...article} key={i}/>
                 })
               }
             </div>
           </div>
         )
-      }
+      
     }
   }
 

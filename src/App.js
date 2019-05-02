@@ -44,13 +44,16 @@ class App extends Component {
   }
 
   render() {
+    if(!this.state.isLoaded) {
+      return null;
+    }
     return (
       <Router basename={process.env.PUBLIC_URL+'/'}>
         <div className="App">
           <div className="container">
             <NavBar/>
           </div>
-          <NavSwitch articles={this.state.articles} topics={this.state.topics} keys={this.state.keys} isLoaded={this.state.isLoaded}/>
+          <NavSwitch articles={this.state.articles} topics={this.state.topics} keys={this.state.keys}/>
         </div>
       </Router>
     );
@@ -72,10 +75,10 @@ export class NavBar extends Component {
 }
 
 export class NavSwitch extends Component {
-  render () {
+  render() {
     return (
       <Switch>
-        <Route exact path="/" render={(props) => <LandingPage {...props}/>}/>
+        <Route exact path="/" render={() => <LandingPage articles={this.props.articles}/>}/>
         <Route path="/about" component={AboutPage}/>
       </Switch>
     )
