@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "499c6d0168e8758702dc6b9206f3bc31",
+    "revision": "bc0b76ca8664a18cb7491b253703e04b",
     "url": "/Spectrum/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Spectrum/static/css/2.31d58e13.chunk.css"
   },
   {
-    "revision": "225b398ab9f64c8c93e2",
-    "url": "/Spectrum/static/css/main.792d0081.chunk.css"
+    "revision": "2938dce74f6470366916",
+    "url": "/Spectrum/static/css/main.c2bf532c.chunk.css"
   },
   {
     "revision": "de3f184b1ea8507c4a61",
     "url": "/Spectrum/static/js/2.ceca7634.chunk.js"
   },
   {
-    "revision": "225b398ab9f64c8c93e2",
-    "url": "/Spectrum/static/js/main.4fe84c5b.chunk.js"
+    "revision": "2938dce74f6470366916",
+    "url": "/Spectrum/static/js/main.c5a52a87.chunk.js"
   },
   {
     "revision": "15d04728c1e67b35df0d",
