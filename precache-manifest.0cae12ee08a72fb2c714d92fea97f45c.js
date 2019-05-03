@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "31a0227f0ad63be4c89d52febb2c048f",
+    "revision": "499c6d0168e8758702dc6b9206f3bc31",
     "url": "/Spectrum/index.html"
   },
   {
-    "revision": "b73a8e2f54cc70cdf9dc",
+    "revision": "de3f184b1ea8507c4a61",
     "url": "/Spectrum/static/css/2.31d58e13.chunk.css"
   },
   {
-    "revision": "e11f4714b07970e23658",
-    "url": "/Spectrum/static/css/main.0c91f31e.chunk.css"
+    "revision": "225b398ab9f64c8c93e2",
+    "url": "/Spectrum/static/css/main.792d0081.chunk.css"
   },
   {
-    "revision": "b73a8e2f54cc70cdf9dc",
-    "url": "/Spectrum/static/js/2.6724857e.chunk.js"
+    "revision": "de3f184b1ea8507c4a61",
+    "url": "/Spectrum/static/js/2.ceca7634.chunk.js"
   },
   {
-    "revision": "e11f4714b07970e23658",
-    "url": "/Spectrum/static/js/main.2bd12ea4.chunk.js"
+    "revision": "225b398ab9f64c8c93e2",
+    "url": "/Spectrum/static/js/main.4fe84c5b.chunk.js"
   },
   {
     "revision": "15d04728c1e67b35df0d",
