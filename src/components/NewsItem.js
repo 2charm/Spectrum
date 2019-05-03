@@ -3,6 +3,13 @@ import React, {Component} from 'react';
 export class NewsItem extends Component {
     render() {
       let imgURL = this.props.urlToImage;
+      let width = 8;
+      let title = this.props.title;
+      title = title.substring(0, title.lastIndexOf(" - "));
+
+      if(imgURL === "") {
+        width = 12;
+      }
       return (
           <div className="container">
             <div className="row">
@@ -15,8 +22,10 @@ export class NewsItem extends Component {
               </div>
               </div>
             }              
-              <div className="col-lg-8" id="news-content">
-                <h3 className="text-left"> {this.props.title} </h3>
+              <div className={"col-lg-"+width} id="news-content">
+                <a href={this.props.url}>
+                  <h3 className="text-left"> {title} </h3>
+                </a>
                 <p className="text-left article-desc"> {this.props.description} </p>
                 <hr id="news-content-bar"/>
               </div>

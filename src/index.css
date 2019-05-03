@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  padding-bottom: 2rem;
   font-family: 'Roboto', 'Future',-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -150,10 +151,6 @@ label {
                   drop-shadow(-1px -1px 0 lightblue);
   filter: drop-shadow(1px 1px 0 lightblue) 
           drop-shadow(-1px -1px 0 lightblue);
-}
-
-.article-desc {
-  /* color: white; */
 }
 
 .logo-img {
