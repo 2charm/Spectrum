@@ -27,7 +27,7 @@ class CenterModeCarousel extends Component {
             className: "center",
             dots: true,
             centerMode: true,
-            autoplay: true,
+            autoplay: false,
             infinite: true,
             centerPadding: "0",
             slidesToShow:5,
