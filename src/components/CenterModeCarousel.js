@@ -12,14 +12,22 @@ import tech from '../img/tech.jpg'
 import usa from '../img/USA.jpg'
 import world from '../img/world.jpg'
 
+const CATEGORIES = ["sports", "health", "business", "entertainment", "science", "technology"]
 
 class CenterModeCarousel extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        activeSlide: 0
+      }
+    }
+
     render() {
         const settings = {
             className: "center",
             dots: true,
             centerMode: true,
-            autoplay: true,
+            autoplay: false,
             infinite: true,
             centerPadding: "0",
             slidesToShow:5,
@@ -43,7 +51,8 @@ class CenterModeCarousel extends Component {
                     slidesToShow: 1
                   }
                 }
-              ]
+              ],
+            afterChange: current => this.props.changeCategory(CATEGORIES[current])
         };
 
         return (
@@ -65,30 +74,30 @@ class CenterModeCarousel extends Component {
                   <img src={entertainment} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">Entertainment</div>
                 </div>
-                <div className="carousel-item">
+                {/* <div className="carousel-item">
                   <img src={headlines} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">Headlines</div>
-                </div>
+                </div> */}
                 <div className="carousel-item">
                   <img src={science} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">Science</div>
                 </div>
-                <div className="carousel-item">
+                {/* <div className="carousel-item">
                   <img src={seattle} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">Seattle</div>
-                </div>
+                </div> */}
                 <div className="carousel-item">
                   <img src={tech} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">Technology</div>
                 </div>
-                <div className="carousel-item">
+                {/* <div className="carousel-item">
                   <img src={usa} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">USA</div>
                 </div>
                 <div className="carousel-item">
                   <img src={world} className="d-block w-75" alt="..."/>
                   <div className="slide__caption">World</div>
-                </div>
+                </div> */}
                 </Slider>
             </div>
         )
