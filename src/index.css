@@ -27,6 +27,7 @@ body {
 h3 {
   color: #3F4C50;
   font-size: 1.5rem;
+  font-weight: 800;
 }
 
 h3:nth-of-type(1) {
@@ -35,6 +36,10 @@ h3:nth-of-type(1) {
 
 h3:nth-of-type(2) {
   margin-bottom: 2.5rem;
+}
+
+.news-title {
+  color: #3F4C50;
 }
 
 .slider {
@@ -82,17 +87,12 @@ hr {
   height  : .5rem;
 }
 
-#news-content {
-  position: relative;
+#news-container {
+  border-bottom: 2px solid #f1f1f1;
 }
 
-#news-content-bar{
-  position: absolute;
-  bottom: .7rem;
-  left: 0;
-  right: 0;
-  height: .1rem;
-  background: black;
+#news-content {
+  position: relative;
 }
 
 .shortBar {
@@ -138,7 +138,7 @@ label {
 }
 
 .card {
-  margin-top:2rem;
+  margin-top:3rem;
 }
 
 .reveal-articles {
@@ -146,18 +146,9 @@ label {
   border-color: black;
 }
 
-#arrow-down:hover {
-  -webkit-filter: drop-shadow(1px 1px 0 lightblue)
-                  drop-shadow(-1px -1px 0 lightblue);
-  filter: drop-shadow(1px 1px 0 lightblue) 
-          drop-shadow(-1px -1px 0 lightblue);
-}
-
 .logo-img {
-  margin-bottom: 1.5rem;
-  opacity: .8;
-  width: 240px;
-  height: 180px;
+  margin-bottom: 1em;
+  margin-top:1.425em;
 }
 
 #arrow-down {

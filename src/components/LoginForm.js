@@ -5,12 +5,11 @@ import {
   MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBModalFooter,
-  MDBIcon,
-  MDBCardHeader,
+  MDBInput,
   MDBBtn
 } from "mdbreact";
 
+const SESSION_TOKEN = "sessionID";
 export class LoginForm extends Component {
     constructor(props){
         super(props);
@@ -23,7 +22,7 @@ export class LoginForm extends Component {
 
     submitHandler(event) {
         event.preventDefault();
-        fetch('api.spectrumnews.me/v1/sessions', {
+        fetch('https://api.spectrumnews.me/v1/sessions', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -34,6 +33,19 @@ export class LoginForm extends Component {
                 password: this.state.password,
             })
         })
+        .then((response) => {
+            let sid = response.headers.get("Authorization")
+            sessionStorage.setItem(SESSION_TOKEN, sid)
+            this.props.changeStatus(true)
+            return response.json();
+        })
+        .then((data) => {
+            this.props.changeUser(data);
+            window.location.href = "/"
+        })
+        .catch((error) => {
+            console.log(error.message)
+        })
     }
 
     changeHandler(event) {
@@ -41,61 +53,43 @@ export class LoginForm extends Component {
     }
 
     render() {
+        //let showHideClassName = this.props.show ? "modal display-block" : "modal display-none"
         return (
             <MDBContainer>
                 <MDBRow>
+                    <MDBCol md="3">
+                    </MDBCol>
                     <MDBCol md="6">
-                    <MDBCard>
-                        <MDBCardBody>
-                        <MDBCardHeader className="form-header warm-flame-gradient rounded">
-                            <h3 className="my-3">
-                            <MDBIcon icon="lock" /> Login:
-                            </h3>
-                        </MDBCardHeader>
-                        <form action="" onSubmit="">
-                            <label
-                            htmlFor="defaultFormEmailEx"
-                            className="grey-text font-weight-light"
-                            >
-                            Your email
-                            </label>
-                            <input
-                            type="email"
-                            onChange={this.changeHandler}
-                            name="email"
-                            id="defaultFormEmailEx"
-                            className="form-control"
-                            />
-                            
-                            <label
-                            htmlFor="defaultFormPasswordEx"
-                            className="grey-text font-weight-light"
-                            >
-                            Your password
-                            </label>
-                            <input
-                            type="password"
-                            onChange={this.changeHandler}
-                            name="password"
-                            id="defaultFormPasswordEx"
-                            className="form-control"
-                            />
-                        </form>
-
-                        <div className="text-center mt-4">
-                            <MDBBtn color="deep-orange" className="mb-3" type="submit">
-                            Login
-                            </MDBBtn>
-                        </div>
-
-                        <MDBModalFooter>
-                            <div className="font-weight-light">
-                            <p>Not a member? Sign Up</p>
-                            <p>Forgot Password?</p>
-                            </div>
-                        </MDBModalFooter>
-                        </MDBCardBody>
-                    </MDBCard>
+                        <MDBCard>
+                            <MDBCardBody>
+                                <form onSubmit={(event) => this.submitHandler(event)}>
+                                    <p className="h5 text-center mb-4">Sign in</p>
+                                    <div className="grey-text">
+                                    <MDBInput
+                                        label="Type your email"
+                                        name="email"
+                                        onChange={(event) => this.changeHandler(event)}
+                                        group
+                                        type="email"
+                                        validate
+                                        error="wrong"
+                                        success="right"
+                                    />
+                                    <MDBInput
+                                        label="Type your password"
+                                        name="password"
+                                        onChange={(event) => this.changeHandler(event)}
+                                        group
+                                        type="password"
+                                        validate
+                                    />
+                                    </div>
+                                    <div className="text-center">
+                                        <MDBBtn type="submit">Login</MDBBtn>
+                                    </div>
+                                </form>
+                            </MDBCardBody>
+                        </MDBCard>
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>

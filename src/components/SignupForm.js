@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput, MDBCard, MDBCardBody } from 'mdbreact';
 
-class SignupForm extends Component  {
+export class SignupForm extends Component  {
     constructor(props){
         super(props);
         this.state = {
@@ -15,7 +15,7 @@ class SignupForm extends Component  {
     }
     submitHandler(event) {
         event.preventDefault();
-        fetch('api.spectrumnews.me/v1/sessions', {
+        fetch('https://api.spectrumnews.me/v1/users', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -30,89 +30,102 @@ class SignupForm extends Component  {
                 lastName:this.state.lastName
             })
         })
+        .then((response) => {
+            let status = response.status
+            if(status === 201) {
+                console.log("Account created");
+                this.props.history.push("/login")
+            } else if (status === 415) {
+                console.log("Unsupported media-type");
+            } else if(status === 500) {
+                console.log("Internal server error");
+            }
+        })
+        .catch((error) => {
+            console.log(error.message);
+        })
     }
 
     changeHandler(event) {
         this.setState({[event.target.name]: event.target.value});
     }
-    
+
     render() {
         return (
             <MDBContainer>
             <MDBRow>
+                <MDBCol md="3"></MDBCol>
                 <MDBCol md="6">
-                <form onSubmit={this.submitHandler}>
-                    <p className="h5 text-center mb-4">Sign up</p>
-                    <div className="grey-text">
-                    <MDBInput
-                        name="email"
-                        label="Your email"
-                        icon="envelope"
-                        onChange={this.changeHandler}
-                        group
-                        type="email"
-                        validate
-                        error="wrong"
-                        success="right"
-                    />
-                    <MDBInput
-                        name="password"
-                        label="Your password"
-                        icon="lock"
-                        onChange={this.changeHandler}
-                        group
-                        type="password"
-                        validate
-                    />
-                    <MDBInput
-                        name="passwordConf"
-                        label="Confirm your password"
-                        icon="lock"
-                        onChange={this.changeHandler}
-                        group
-                        type="password"
-                        validate
-                        error="wrong"
-                        success="right"
-                    />
-                    <MDBInput
-                        name="username"
-                        label="Username"
-                        icon="user"
-                        onChange={this.changeHandler}
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                    />
-                    <MDBInput
-                        name="firstName"
-                        label="First Name"
-                        icon="user"
-                        onChange={this.changeHandler}
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                    />
-                    <MDBInput
-                        name="lastName"
-                        label="Last Name"
-                        icon="user"
-                        onChange={this.changeHandler}
-                        group
-                        type="text"
-                        validate
-                        error="wrong"
-                        success="right"
-                    />
-                    </div>
-                    <div className="text-center">
-                    <MDBBtn type="submit" color="primary">Register</MDBBtn>
-                    </div>
-                </form>
+                    <MDBCard>
+                        <MDBCardBody>
+                            <form onSubmit={(event) => this.submitHandler(event)}>
+                                <p className="h5 text-center mb-4">Sign Up</p>
+                                <div className="grey-text">
+                                <MDBInput
+                                    name="email"
+                                    label="Your email"
+                                    onChange={(event) => this.changeHandler(event)}
+                                    group
+                                    type="email"
+                                    validate
+                                    error="wrong"
+                                    success="right"
+                                />
+                                <MDBInput
+                                    name="password"
+                                    label="Your password"
+                                    onChange={(event) => this.changeHandler(event)}
+                                    group
+                                    type="password"
+                                    validate
+                                />
+                                <MDBInput
+                                    name="passwordConf"
+                                    label="Confirm your password"
+                                    onChange={(event) => this.changeHandler(event)}
+                                    group
+                                    type="password"
+                                    validate
+                                    error="wrong"
+                                    success="right"
+                                />
+                                <MDBInput
+                                    name="username"
+                                    label="Username"
+                                    onChange={(event) => this.changeHandler(event)}
+                                    group
+                                    type="text"
+                                    validate
+                                    error="wrong"
+                                    success="right"
+                                />
+                                <MDBInput
+                                    name="firstName"
+                                    label="First Name"
+                                    onChange={(event) => this.changeHandler(event)}
+                                    group
+                                    type="text"
+                                    validate
+                                    error="wrong"
+                                    success="right"
+                                />
+                                <MDBInput
+                                    name="lastName"
+                                    label="Last Name"
+                                    onChange={(event) => this.changeHandler(event)}
+                                    group
+                                    type="text"
+                                    validate
+                                    error="wrong"
+                                    success="right"
+                                />
+                                </div>
+                                <div className="text-center">
+                                    <MDBBtn type="submit">Sign Up</MDBBtn>
+                                </div>
+                            </form>
+                        </MDBCardBody>
+                    </MDBCard>
                 </MDBCol>
             </MDBRow>
             </MDBContainer>
