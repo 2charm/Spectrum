@@ -4,8 +4,10 @@ import NewsItem from './NewsItem.js'
 export class LandingPage extends Component {
     constructor(props) {
       super(props);
-      console.log(this.props)
-      this.state = {category: "sports"};
+      this.state = {
+        category: "sports",
+        show:false,
+      };
     }
 
     render() {
@@ -25,7 +27,9 @@ export class LandingPage extends Component {
             <div className="container">
               {
                 this.props.articles[this.state.category].map((article,i) => {
-                  return <NewsItem {...article} key={i}/>
+                  return (
+                    <NewsItem {...article} key={i}/>
+                  )
                 })
               }
             </div>

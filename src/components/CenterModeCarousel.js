@@ -4,13 +4,13 @@ import Slider from "react-slick";
 import health from '../img/health.jpg'
 import business from '../img/business.jpg'
 import entertainment from '../img/entertainment.jpg'
-import headlines from '../img/Headlines.jpg'
+//import headlines from '../img/Headlines.jpg'
 import science from '../img/science.jpg'
-import seattle from '../img/Seattle.jpg'
+//import seattle from '../img/Seattle.jpg'
 import sports from '../img/sports.jpg'
 import tech from '../img/tech.jpg'
-import usa from '../img/USA.jpg'
-import world from '../img/world.jpg'
+//import usa from '../img/USA.jpg'
+//import world from '../img/world.jpg'
 
 const CATEGORIES = ["sports", "health", "business", "entertainment", "science", "technology"]
 

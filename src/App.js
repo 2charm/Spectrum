@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom";
 import {AboutPage} from './components/AboutPage.js';
-import {LandingPage} from './components/LandingPage.js'
+import {LandingPage} from './components/LandingPage.js';
+import {LoginForm} from './components/LoginForm.js';
+import {SignupForm} from './components/SignupForm.js';
+import {UserPage} from './components/UserPage.js'
 import './App.css';
 
+const SESSION_TOKEN = "sessionID";
 class App extends Component {
   constructor(props) {
       super(props);
@@ -11,7 +15,9 @@ class App extends Component {
         keys:[],
         topics:[],
         articles:{},
-        isLoaded: false
+        isLoaded: false,
+        isLoggedIn:false,
+        user:null
       }
   }
 
@@ -34,13 +40,29 @@ class App extends Component {
           keys:keys,
           topics:topics,
           articles:data,
-          isLoaded:true
+          isLoaded:true,
         })
-        console.log(data)
       })
       .catch((err) => {
         console.log(err.message)
       })
+
+    if(sessionStorage.getItem(SESSION_TOKEN) !== null) {
+      this.setState({isLoggedIn:true})
+    }
+  }
+
+  logout() {
+    sessionStorage.removeItem(SESSION_TOKEN);
+    this.setState({isLoggedIn:false})
+  }
+
+  showModal() {
+    this.setState({show:true});
+  }
+
+  hideModal() {
+    this.setState({show:false});
   }
 
   render() {
@@ -51,9 +73,18 @@ class App extends Component {
       <Router basename={process.env.PUBLIC_URL+'/'}>
         <div className="App">
           <div className="container">
-            <NavBar/>
+            <NavBar 
+              isLoggedIn={this.state.isLoggedIn} 
+              logout={() => this.logout()}
+              user={this.state.user}
+              />
           </div>
-          <NavSwitch articles={this.state.articles} topics={this.state.topics} keys={this.state.keys}/>
+          <NavSwitch articles={this.state.articles} 
+            topics={this.state.topics} 
+            keys={this.state.keys} 
+            changeStatus={(isLoggedIn) => this.setState({isLoggedIn})}
+            changeUser={(user) => this.setState({user})}
+            />
         </div>
       </Router>
     );
@@ -62,15 +93,29 @@ class App extends Component {
 
 export class NavBar extends Component {
   render() {
-    return (
-      <div className="nav-scroller py-1 mb-2">
+    if(!this.props.isLoggedIn) {
+      return (
+        <div className="nav-scroller py-1 mb-2">
+          <nav className="nav d-flex">
+            <NavLink  exact to="/" className="p-2 text-muted">Home</NavLink>
+            <NavLink  exact to="/login" className="p-2 text-muted">Login</NavLink>
+            <NavLink  exact to="/register" className="p-2 text-muted">Sign Up</NavLink>
+            <NavLink to="/about" className="p-2 text-muted">About Us</NavLink>
+          </nav>
+        </div>
+      )
+    } else {
+      return (
+        <div className="nav-scroller py-1 mb-2">
         <nav className="nav d-flex">
           <NavLink  exact to="/" className="p-2 text-muted">Home</NavLink>
-          <NavLink  exact to="/" className="p-2 text-muted">Login</NavLink>
+          <NavLink  exact to="/user" className="p-2 text-muted">User Profile</NavLink>
+          <NavLink to="/" onClick={this.props.logout} className="p-2 text-muted">Logout</NavLink>
           <NavLink to="/about" className="p-2 text-muted">About Us</NavLink>
         </nav>
       </div>
-    )
+      )
+    }
   }
 }
 
@@ -79,6 +124,9 @@ export class NavSwitch extends Component {
     return (
       <Switch>
         <Route exact path="/" render={() => <LandingPage articles={this.props.articles}/>}/>
+        <Route path="/login" render={() => <LoginForm changeStatus={this.props.changeStatus} changeUser={this.props.changeUser}/>}/>
+        <Route path="/register" component={SignupForm}/>
+        <Route path="/user" component={UserPage}/>
         <Route path="/about" component={AboutPage}/>
       </Switch>
     )

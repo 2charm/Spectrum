@@ -12,24 +12,22 @@ export class NewsItem extends Component {
       }
       return (
           <div className="container">
-            <div className="row">
+            <div className="row" id="news-container">
             { imgURL !== "" &&
-              <div className="col-lg-4 logo-side">
-              <div className="logo">
+              <div className="col-lg-4">
+              {/* <div className="logo"> */}
                 <a href={this.props.url} >
                   <img className="img-fluid logo-img" src={imgURL} alt={this.props.source.id}/>
                 </a>
-              </div>
+              {/* </div> */}
               </div>
             }              
               <div className={"col-lg-"+width} id="news-content">
                 <a href={this.props.url}>
-                  <h3 className="text-left"> {title} </h3>
+                  <h3 className="text-left news-title"> {title} </h3>
                 </a>
                 <p className="text-left article-desc"> {this.props.description} </p>
-                <hr id="news-content-bar"/>
               </div>
-              
             </div>
           </div>
       );
