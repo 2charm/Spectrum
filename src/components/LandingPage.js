@@ -3,9 +3,10 @@ import CenterModeCarousel from './CenterModeCarousel.js'
 import NewsItem from './NewsItem.js'
 export class LandingPage extends Component {
     constructor(props) {
+      console.log(props.articles);
       super(props);
       this.state = {
-        category: "sports",
+        category: "headline",
         show:false,
       };
     }

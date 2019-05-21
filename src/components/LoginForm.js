@@ -40,7 +40,9 @@ export class LoginForm extends Component {
             return response.json();
         })
         .then((data) => {
+            let username = data['userName']
             this.props.changeUser(data);
+            sessionStorage.setItem("username", username)         
             window.location.href = "/"
         })
         .catch((error) => {
