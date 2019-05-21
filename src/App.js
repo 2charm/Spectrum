@@ -109,7 +109,7 @@ export class NavBar extends Component {
         <div className="nav-scroller py-1 mb-2">
         <nav className="nav d-flex">
           <NavLink  exact to="/" className="p-2 text-muted">Home</NavLink>
-          <NavLink  exact to="/user" className="p-2 text-muted">User Profile</NavLink>
+          <NavLink  exact to="/user" className="p-2 text-muted">{sessionStorage.getItem('username')}</NavLink>
           <NavLink to="/" onClick={this.props.logout} className="p-2 text-muted">Logout</NavLink>
           <NavLink to="/about" className="p-2 text-muted">About Us</NavLink>
         </nav>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, PieChart, Pie, Cell, RadialBarChart, RadialBar,
+    Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, PieChart, Pie, Cell, RadialBarChart, RadialBar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
 
 export class UserPage extends Component {
@@ -58,6 +58,30 @@ export class UserPage extends Component {
               name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658',
             },
           ];
+
+          const data4 = [
+            {
+              name: 'Week 1', business: 15, sports: 20, health:5, entertainment:9, science:1, technology:5,
+            },
+            {
+              name: 'Week 2', business: 12, sports: 11, health:2, entertainment:19, science:5, technology:10,
+            },
+            {
+              name: 'Week 3', business: 6, sports: 2, health:11, entertainment:13, science:11, technology:14,
+            },
+            {
+              name: 'Week 4', business: 13, sports: 12, health:4, entertainment:6, science:8, technology:11,
+            },
+            {
+              name: 'Week 5',business: 9, sports: 7, health:9, entertainment:3, science:10, technology:2,
+            },
+            {
+              name: 'Week 6', business: 10, sports: 9, health:11, entertainment:7, science:7, technology:8,
+            },
+            {
+              name: 'Week 7', business: 8, sports: 11, health:14, entertainment:10, science:4, technology:12,
+            },
+          ];
         
         return (
            <div className="container">
@@ -69,13 +93,58 @@ export class UserPage extends Component {
                         </div>
                         <div className="col-md-8">
                             <div className="card-body">
-                                <h5 className="card-title">Blank's Profile</h5>
+                                <h5 className="card-title">{sessionStorage.getItem('username') + "'s Profile"}</h5>
                                 <p className="card-text">This will be a short summary of the user's general usage of Spectrum news and how much news they are reading from each category.</p>
                                 <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                     </div>
                 </div>
+             </div>
+             <hr className="shortBar"/>
+             <div className="row">
+              <div className="col-md-9">
+                <div className="card" id="card-graphs">
+                  <div className="card-body">
+                    <h5 className="card-title">Weekly Category Trends</h5>
+                    <LineChart
+                      width={800}
+                      height={300}
+                      data={data4}
+                      margin={{
+                        top: 5, right: 40, left: 10, bottom: 5,
+                      }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="name" />
+                      <YAxis />
+                      <Tooltip />
+                      <Legend />
+                      <Line type="monotone" dataKey="business" stroke="#8884d8" activeDot={{ r: 8 }} />
+                      <Line type="monotone" dataKey="sports" stroke="#82ca9d" />
+                      <Line type="monotone" dataKey="health" stroke="#00FF00" />
+                      <Line type="monotone" dataKey="entertainment" stroke="#00FFFF" />
+                      <Line type="monotone" dataKey="science" stroke="#008080" />
+                      <Line type="monotone" dataKey="technology" stroke="#FF5733" />
+                    </LineChart>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="card" id="card-graphs">
+                  <div className="card-body">
+                    <h5 className="card-title">Top News Categories</h5>
+                    <ul className="list-group">
+                      <li className="list-group-item">Health</li>
+                      <li className="list-group-item">Technology</li>
+                      <li className="list-group-item">Sports</li>
+                      <li className="list-group-item">Entertainment</li>
+                      <li className="list-group-item">Business</li>
+                      <li className="list-group-item">Science</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
              </div>
              <div className="row">
                 <div className="col-md-4">
@@ -126,6 +195,8 @@ export class UserPage extends Component {
                     </div>
                 </div>
              </div>
+             <hr className="longBar"/>
+             {/* <h3> Suggested Articles: </h3> */}
            </div>
         );
     }
