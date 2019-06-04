@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom"
 import {LoginForm} from './pages/LoginForm.js';
 import {SignupForm} from './pages/SignupForm.js';
 import {UserPage} from './pages/UserPage.js';
-import {FullCoveragePage} from './pages/FullCoveragePage.js';
+import {FullSpectrumPage} from './pages/FullSpectrumPage.js';
 import {MainPage} from './pages/MainPage.js';
 import {LandingPage} from './pages/LandingPage.js'
 import { css } from '@emotion/core';
@@ -167,7 +167,7 @@ export class NavSwitch extends Component {
         <Route path="/register" component={SignupForm}/>
         <Route path="/user" component={UserPage}/>
         <Route path="/about" component={LandingPage}/>
-        <Route path="/fullspectrum/:id" render={(props) => <FullCoveragePage {...props} articles={this.props.articles}/>}/>
+        <Route path="/fullspectrum/:category/:id" render={(props) => <FullSpectrumPage {...props} articles={this.props.articles}/>}/>
       </Switch>
     )
   }

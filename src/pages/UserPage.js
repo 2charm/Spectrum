@@ -8,7 +8,8 @@ export class UserPage extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        scores: {}
+        catScores: {},
+        sourceScores: []
       }
     }
     componentDidMount() {
@@ -26,8 +27,10 @@ export class UserPage extends Component {
         return response.json();
       })
       .then((data) => {
+        console.log(data)
         this.setState({
-          scores:data['categoryToNumArticles']
+          catScores:data['categoryToNumArticles'],
+          sourceScores: data['sourceToNumArticles']
         });
       })
       .catch((err) => {
@@ -38,58 +41,57 @@ export class UserPage extends Component {
     render() {
         let data = [
             {
-              subject: 'Sports', A: this.state.scores['sports'], fullMark: 20,
+              subject: 'Sports', A: this.state.catScores['sports'], fullMark: 20,
             },
             {
-              subject: 'Health', A: this.state.scores['health'], fullMark: 20,
+              subject: 'Health', A: this.state.catScores['health'], fullMark: 20,
             },
             {
-              subject: 'Business', A: this.state.scores['business'], fullMark: 20,
+              subject: 'Business', A: this.state.catScores['business'], fullMark: 20,
             },
             {
-              subject: 'Entertainment', A: this.state.scores['entertainment'], fullMark: 20,
+              subject: 'Entertainment', A: this.state.catScores['entertainment'], fullMark: 20,
             },
             {
-              subject: 'Science', A: this.state.scores['science'], fullMark: 20,
+              subject: 'Science', A: this.state.catScores['science'], fullMark: 20,
             },
             {
-              subject: 'Tech', A: this.state.scores['technology'], fullMark: 20,
+              subject: 'Tech', A: this.state.catScores['technology'], fullMark: 20,
             },
           ];
-
         const data2 = [
-            { name: 'Sports', value: this.state.scores['sports'] },
-            { name: 'Health', value: this.state.scores['health'] },
-            { name: 'Business', value: this.state.scores['business'] },
-            { name: 'Entertainment', value: this.state.scores['entertainment'] },
-            { name: 'Science', value: this.state.scores['science'] },
-            { name: 'Tech', value: this.state.scores['technology'] },
+            { name: 'Sports', value: this.state.catScores['sports'] },
+            { name: 'Health', value: this.state.catScores['health'] },
+            { name: 'Business', value: this.state.catScores['business'] },
+            { name: 'Entertainment', value: this.state.catScores['entertainment'] },
+            { name: 'Science', value: this.state.catScores['science'] },
+            { name: 'Tech', value: this.state.catScores['technology'] },
         ];
 
         const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
         const data3 = [
             {
-              name: 'Sports', uv: this.state.scores['sports'] , fill: '#8884d8',
+              name: 'Sports', uv: this.state.catScores['sports'] , fill: '#8884d8',
             },
             {
-              name: 'Health', uv: this.state.scores['health'] , fill: '#83a6ed',
+              name: 'Health', uv: this.state.catScores['health'] , fill: '#83a6ed',
             },
             {
-              name: 'Business', uv: this.state.scores['business'] , fill: '#8dd1e1',
+              name: 'Business', uv: this.state.catScores['business'] , fill: '#8dd1e1',
             },
             {
-              name: 'Entertainment', uv: this.state.scores['entertainment'] , fill: '#82ca9d',
+              name: 'Entertainment', uv: this.state.catScores['entertainment'] , fill: '#82ca9d',
             },
             {
-              name: 'Science', uv: this.state.scores['science'] , fill: '#d0ed57',
+              name: 'Science', uv: this.state.catScores['science'] , fill: '#d0ed57',
             },
             {
-              name: 'Tech', uv: this.state.scores['technology'] , fill: '#ffc658',
+              name: 'Tech', uv: this.state.catScores['technology'] , fill: '#ffc658',
             },
           ];
 
-          const data4 = [
+        const data4 = [
             {
               name: 'Week 1', business: 15, sports: 20, health:5, entertainment:9, science:1, technology:5,
             },
@@ -112,7 +114,18 @@ export class UserPage extends Component {
               name: 'Week 7', business: 8, sports: 11, health:14, entertainment:10, science:4, technology:12,
             },
           ];
-        
+        let sortable = [];
+        for (let source in this.state.sourceScores) {
+          sortable.push([source, this.state.sourceScores[source]]);
+        }
+
+        sortable.sort((a, b) => {
+          return a[1] - b[1];
+        })
+
+       
+        console.log(sortable);
+
         return (
            <div className="container">
              <div className="row user-intro">
@@ -152,12 +165,13 @@ export class UserPage extends Component {
                   <div className="card-body">
                     <h5 className="card-title">Top News Sources</h5>
                     <ul className="list-group">
-                      <li className="list-group-item">CNN</li>
-                      <li className="list-group-item">CNBC</li>
-                      <li className="list-group-item">ESPN</li>
-                      <li className="list-group-item">Tech Crunch</li>
-                      <li className="list-group-item">Politico</li>
-                      <li className="list-group-item">FOX</li>
+                      {
+                        sortable.map((key) =>{
+                          return(
+                            <li className="list-group-item">{key[0]}</li>
+                          )
+                        })
+                      }
                     </ul>
                   </div>
                 </div>

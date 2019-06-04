@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import spectrum from "../img/2-squares.png"
+import spectrum from "../img/2-squares(colored).png"
 import Moment from 'react-moment';
 
 const SESSION_TOKEN = "sessionID";
@@ -10,25 +10,23 @@ export class NewsItem extends Component {
       if(sessionStorage.getItem(SESSION_TOKEN) !== null) {
         let url = "https://api.spectrumnews.me/v1/metrics";
         let bearer = sessionStorage.getItem(SESSION_TOKEN);
-
-      fetch(url, { 
-          method: "POST", 
-          headers: {
-            "Content-Type": "text/plain",
-            "Authorization":bearer
-          },
-          body: {
-            category:this.props.category,
-            source:this.props.source.name
+        let metric = {category: this.props.category, source:this.props.source.name}
+   
+        fetch(url, { 
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": bearer
+            },
+            body: JSON.stringify(metric)
           }
-        }
-      )
-      .then((response) => {
-        console.log(response.status)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
+        )
+        .then((response) => {
+          console.log(response.status)
+        })
+        .catch((err) => {
+          console.log(err.message)
+        })
       }
     }
 
@@ -71,13 +69,13 @@ export class NewsItem extends Component {
                 <p className="text-left article-desc"> {this.props.description} </p>
                 <div className="row">
                   {
-                    this.props.category === "headline" &&
+                    this.props.spectrumEnabled &&
                     (
                       <div>
                         <Link to={"/fullspectrum/" + this.props.article_id}>
                           <img className="full-spectrum-icon" src={spectrum} alt="full-spectrum"/>
                         </Link>
-                        <Link className="full-spectrum-text" to={"/fullspectrum/" + this.props.article_id}>Full Spectrum</Link>
+                        <Link className="full-spectrum-text" to={"/fullspectrum/" + this.props.category + "/" + this.props.article_id}>Full Spectrum</Link>
                       </div>
                     )
                     }

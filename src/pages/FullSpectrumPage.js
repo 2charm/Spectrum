@@ -10,12 +10,12 @@ const override_load = css`
   left: 50%;
 `;
 
-export class FullCoveragePage extends Component {
+export class FullSpectrumPage extends Component {
     
     constructor(props){
         super(props);
         this.state= {
-            article:this.props.articles['headline'][this.props.match.params.id],
+            article:this.props.articles[this.props.match.params.category][this.props.match.params.id],
             articles:[],
             isLoaded:false,
         }
@@ -46,7 +46,7 @@ export class FullCoveragePage extends Component {
     }
     
     render() {
-        let article = this.props.articles['headline'][this.props.match.params.id];
+        let article = this.props.articles[this.props.match.params.category][this.props.match.params.id];
 
         if(!this.state.isLoaded) {
             return (
@@ -87,4 +87,4 @@ export class FullCoveragePage extends Component {
     }
 }
 
-export default FullCoveragePage;
+export default FullSpectrumPage;
