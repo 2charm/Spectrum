@@ -1,61 +1,91 @@
 import React, {Component} from 'react';
+import news from '../img/newspaper.png';
 import {
     Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, PieChart, Pie, Cell, RadialBarChart, RadialBar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
 
 export class UserPage extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        scores: {}
+      }
+    }
+    componentDidMount() {
+      let url = "https://api.spectrumnews.me/v1/metrics";
+      let bearer = sessionStorage.getItem("sessionID");
+
+      fetch(url, {
+        methods:"GET",
+        headers: {
+          "Content-Type": "text/plain",
+          "Authorization":bearer
+        }
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({
+          scores:data['categoryToNumArticles']
+        });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+    }
+
     render() {
         let data = [
             {
-              subject: 'Sports', A: 120, B: 110, fullMark: 150,
+              subject: 'Sports', A: this.state.scores['sports'], fullMark: 20,
             },
             {
-              subject: 'Health', A: 98, B: 130, fullMark: 150,
+              subject: 'Health', A: this.state.scores['health'], fullMark: 20,
             },
             {
-              subject: 'Business', A: 86, B: 130, fullMark: 150,
+              subject: 'Business', A: this.state.scores['business'], fullMark: 20,
             },
             {
-              subject: 'Entertainment', A: 99, B: 100, fullMark: 150,
+              subject: 'Entertainment', A: this.state.scores['entertainment'], fullMark: 20,
             },
             {
-              subject: 'Science', A: 85, B: 90, fullMark: 150,
+              subject: 'Science', A: this.state.scores['science'], fullMark: 20,
             },
             {
-              subject: 'Tech', A: 65, B: 85, fullMark: 150,
+              subject: 'Tech', A: this.state.scores['technology'], fullMark: 20,
             },
           ];
 
         const data2 = [
-            { name: 'Group A', value: 400 },
-            { name: 'Group B', value: 300 },
-            { name: 'Group C', value: 300 },
-            { name: 'Group D', value: 200 },
+            { name: 'Sports', value: this.state.scores['sports'] },
+            { name: 'Health', value: this.state.scores['health'] },
+            { name: 'Business', value: this.state.scores['business'] },
+            { name: 'Entertainment', value: this.state.scores['entertainment'] },
+            { name: 'Science', value: this.state.scores['science'] },
+            { name: 'Tech', value: this.state.scores['technology'] },
         ];
 
         const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
         const data3 = [
             {
-              name: '18-24', uv: 31.47, pv: 2400, fill: '#8884d8',
+              name: 'Sports', uv: this.state.scores['sports'] , fill: '#8884d8',
             },
             {
-              name: '25-29', uv: 26.69, pv: 4567, fill: '#83a6ed',
+              name: 'Health', uv: this.state.scores['health'] , fill: '#83a6ed',
             },
             {
-              name: '30-34', uv: 15.69, pv: 1398, fill: '#8dd1e1',
+              name: 'Business', uv: this.state.scores['business'] , fill: '#8dd1e1',
             },
             {
-              name: '35-39', uv: 8.22, pv: 9800, fill: '#82ca9d',
+              name: 'Entertainment', uv: this.state.scores['entertainment'] , fill: '#82ca9d',
             },
             {
-              name: '40-49', uv: 8.63, pv: 3908, fill: '#a4de6c',
+              name: 'Science', uv: this.state.scores['science'] , fill: '#d0ed57',
             },
             {
-              name: '50+', uv: 2.63, pv: 4800, fill: '#d0ed57',
-            },
-            {
-              name: 'unknow', uv: 6.67, pv: 4800, fill: '#ffc658',
+              name: 'Tech', uv: this.state.scores['technology'] , fill: '#ffc658',
             },
           ];
 
@@ -85,10 +115,15 @@ export class UserPage extends Component {
         
         return (
            <div className="container">
-             <div className="row">
-                <div className="card mb-3" id="user-card">
+             <div className="row user-intro">
+               
+                 <h3>{"Hi, " + sessionStorage.getItem('username') + "! Here are some of your reading habits for the last week."}</h3>
+                {/* <div className="card mb-3" id="user-card">
                     <div className="row no-gutters">
-                        <div className="col-xl-12">
+                        <div className="col-xl-3">
+                          <img src={news}/>
+                        </div>
+                        <div className="col-xl-9">
                             <div className="card-body">
                                 <h5 className="card-title">{sessionStorage.getItem('username') + "'s Profile"}</h5>
                                 <p className="card-text">This will be a short summary of the user's general usage of Spectrum news and how much news they are reading from each category.</p>
@@ -96,12 +131,12 @@ export class UserPage extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
              </div>
              <hr className="shortBar"/>
              <div className="row">
               <div className="col-md-9">
-                <div className="card" id="card-graphs">
+                <div className="shadow-sm card" id="card-graphs">
                   <div className="card-body">
                     <h5 className="card-title">Weekly Category Trends</h5>
                     <LineChart
@@ -128,16 +163,16 @@ export class UserPage extends Component {
                 </div>
               </div>
               <div className="col-md-3">
-                <div className="card" id="card-graphs">
+                <div className="shadow-sm card" id="card-graphs">
                   <div className="card-body">
-                    <h5 className="card-title">Top News Categories</h5>
+                    <h5 className="card-title">Top News Sources</h5>
                     <ul className="list-group">
-                      <li className="list-group-item">Health</li>
-                      <li className="list-group-item">Technology</li>
-                      <li className="list-group-item">Sports</li>
-                      <li className="list-group-item">Entertainment</li>
-                      <li className="list-group-item">Business</li>
-                      <li className="list-group-item">Science</li>
+                      <li className="list-group-item">CNN</li>
+                      <li className="list-group-item">CNBC</li>
+                      <li className="list-group-item">ESPN</li>
+                      <li className="list-group-item">Tech Crunch</li>
+                      <li className="list-group-item">Politico</li>
+                      <li className="list-group-item">FOX</li>
                     </ul>
                   </div>
                 </div>
@@ -145,7 +180,7 @@ export class UserPage extends Component {
              </div>
              <div className="row">
                 <div className="col-md-4">
-                    <div className="card" id="card-graphs">
+                    <div className="shadow-sm card" id="card-graphs">
                         <div className="card-body">
                             <h5 className="card-title">Category Radar</h5>
                             {<RadarChart width={310} height={210} data={data}>
@@ -159,7 +194,7 @@ export class UserPage extends Component {
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card" id="card-graphs">
+                    <div className="shadow-sm card" id="card-graphs">
                         <div className="card-body">
                             <h5 className="card-title">Category Proportion</h5>
                             {<PieChart width={310} height={210} onMouseEnter={this.onPieEnter}>
@@ -181,7 +216,7 @@ export class UserPage extends Component {
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card" id="card-graphs">
+                    <div className="shadow-sm card" id="card-graphs">
                         <div className="card-body">
                             <h5 className="card-title">Num Articles Per Category</h5>
                             {<RadialBarChart width={310} height={210} innerRadius={20} outerRadius={100} barSize={10} data={data3}>
