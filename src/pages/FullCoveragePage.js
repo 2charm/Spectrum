@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import NewsItem from '../components/NewsItem.js'
+import { css } from '@emotion/core';
 import { BeatLoader } from 'react-spinners';
+import '../App.css';
 
+const override_load = css`
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+`;
 
 export class FullCoveragePage extends Component {
     
@@ -45,6 +52,7 @@ export class FullCoveragePage extends Component {
             return (
               <div className='sweet-loading'>
               <BeatLoader
+                css={override_load}
                 sizeUnit={"px"}
                 size={20}
                 color={'#E08D4F'}

@@ -8,7 +8,7 @@ export class NewsItem extends Component {
 
     updateCategory() {
       if(sessionStorage.getItem(SESSION_TOKEN) !== null) {
-        let url = "https://api.spectrumnews.me/v1/news";
+        let url = "https://api.spectrumnews.me/v1/metrics";
         let bearer = sessionStorage.getItem(SESSION_TOKEN);
 
       fetch(url, { 
@@ -17,7 +17,10 @@ export class NewsItem extends Component {
             "Content-Type": "text/plain",
             "Authorization":bearer
           },
-          body: this.props.category
+          body: {
+            category:this.props.category,
+            source:this.props.source.name
+          }
         }
       )
       .then((response) => {

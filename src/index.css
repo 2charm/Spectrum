@@ -109,6 +109,11 @@ h3 {
   z-index: 2;
 }
 
+.user-intro {
+  margin: auto;
+  width: 50%;
+  margin-top: 3.5rem;
+}
 
 /* Orange Bars */
 hr {
