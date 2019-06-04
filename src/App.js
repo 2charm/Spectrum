@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, NavLink, Switch} from "react-router-dom";
-import {AboutPage} from './components/AboutPage.js';
-import {LandingPage} from './components/LandingPage.js';
-import {LoginForm} from './components/LoginForm.js';
-import {SignupForm} from './components/SignupForm.js';
-import {UserPage} from './components/UserPage.js'
+import {LoginForm} from './pages/LoginForm.js';
+import {SignupForm} from './pages/SignupForm.js';
+import {UserPage} from './pages/UserPage.js';
+import {FullCoveragePage} from './pages/FullCoveragePage.js';
+import {MainPage} from './pages/MainPage.js';
+import {LandingPage} from './pages/LandingPage.js'
+import { css } from '@emotion/core';
+import { BeatLoader } from 'react-spinners';
+import BackToTop from "react-back-to-top-button";
 import './App.css';
 
 const SESSION_TOKEN = "sessionID";
+
+const override_load = css`
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+`;
+
 class App extends Component {
   constructor(props) {
       super(props);
@@ -42,6 +53,7 @@ class App extends Component {
           articles:data,
           isLoaded:true,
         })
+        console.log(this.state.articles)
       })
       .catch((err) => {
         console.log(err.message)
@@ -53,8 +65,22 @@ class App extends Component {
   }
 
   logout() {
-    sessionStorage.removeItem(SESSION_TOKEN);
-    this.setState({isLoggedIn:false})
+    
+    fetch('https://api.spectrumnews.me/v1/sessions/mine', {
+        method: 'DELETE',
+        headers: {
+            'Authorization':sessionStorage.getItem(SESSION_TOKEN),
+        },
+    })
+    .then((response) => {
+      sessionStorage.removeItem(SESSION_TOKEN);
+      this.setState({isLoggedIn:false});
+      console.log(response.status);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+    
   }
 
   showModal() {
@@ -67,7 +93,17 @@ class App extends Component {
 
   render() {
     if(!this.state.isLoaded) {
-      return null;
+      return (
+        <div className='sweet-loading'>
+        <BeatLoader
+          css={override_load}
+          sizeUnit={"px"}
+          size={20}
+          color={'#E08D4F'}
+          loading={!this.state.isLoaded}
+        />
+      </div> 
+      );
     }
     return (
       <Router basename={process.env.PUBLIC_URL+'/'}>
@@ -85,6 +121,14 @@ class App extends Component {
             changeStatus={(isLoggedIn) => this.setState({isLoggedIn})}
             changeUser={(user) => this.setState({user})}
             />
+            <BackToTop
+              showOnScrollUp
+              showAt={100}
+              speed={1000}
+              easing="easeInOutQuint"
+            >
+              <span><i className="fas fa-arrow-up"></i></span>
+            </BackToTop>
         </div>
       </Router>
     );
@@ -123,11 +167,12 @@ export class NavSwitch extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={() => <LandingPage articles={this.props.articles}/>}/>
-        <Route path="/login" render={() => <LoginForm changeStatus={this.props.changeStatus} changeUser={this.props.changeUser}/>}/>
+        <Route exact path="/" render={(props) => <MainPage {...props} articles={this.props.articles}/>}/>
+        <Route path="/login" render={(props) => <LoginForm {...props} changeStatus={this.props.changeStatus} changeUser={this.props.changeUser}/>}/>
         <Route path="/register" component={SignupForm}/>
         <Route path="/user" component={UserPage}/>
-        <Route path="/about" component={AboutPage}/>
+        <Route path="/about" component={LandingPage}/>
+        <Route path="/fullspectrum/:id" render={(props) => <FullCoveragePage {...props} articles={this.props.articles}/>}/>
       </Switch>
     )
   }

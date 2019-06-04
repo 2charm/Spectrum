@@ -9,12 +9,23 @@ import {
   MDBBtn
 } from "mdbreact";
 
+import { css } from '@emotion/core';
+import { BarLoader } from 'react-spinners';
+
 const SESSION_TOKEN = "sessionID";
+
+const override_load = css`
+  position: fixed; /* or absolute */
+  left: 25.7%;
+`;
+
 export class LoginForm extends Component {
     constructor(props){
         super(props);
 
         this.state = {
+            hasError:false,
+            hasLoaded:false,
             email:"",
             password:"",
         };
@@ -22,6 +33,9 @@ export class LoginForm extends Component {
 
     submitHandler(event) {
         event.preventDefault();
+        this.setState({
+            hasLoaded:true
+        })
         fetch('https://api.spectrumnews.me/v1/sessions', {
             method: 'POST',
             headers: {
@@ -34,10 +48,17 @@ export class LoginForm extends Component {
             })
         })
         .then((response) => {
-            let sid = response.headers.get("Authorization")
-            sessionStorage.setItem(SESSION_TOKEN, sid)
-            this.props.changeStatus(true)
-            return response.json();
+            if(response.status != 201) {
+                this.setState({
+                    hasLoaded:false
+                })
+                throw new Error(response.status)
+            } else {
+                let sid = response.headers.get("Authorization")
+                sessionStorage.setItem(SESSION_TOKEN, sid)
+                this.props.changeStatus(true)
+                return response.json();
+            }
         })
         .then((data) => {
             let username = data['userName']
@@ -46,7 +67,9 @@ export class LoginForm extends Component {
             window.location.href = "/"
         })
         .catch((error) => {
-            console.log(error.message)
+            this.setState({
+                hasError:true
+            })
         })
     }
 
@@ -55,9 +78,14 @@ export class LoginForm extends Component {
     }
 
     render() {
-        //let showHideClassName = this.props.show ? "modal display-block" : "modal display-none"
         return (
             <MDBContainer>
+                {
+                    this.state.hasError && 
+                    <div className="alert alert-danger" role="alert">
+                        Incorrect password and/or email!
+                    </div>
+                }
                 <MDBRow>
                     <MDBCol md="3">
                     </MDBCol>
@@ -87,13 +115,26 @@ export class LoginForm extends Component {
                                     />
                                     </div>
                                     <div className="text-center">
-                                        <MDBBtn type="submit">Login</MDBBtn>
+                                        <MDBBtn className="btn peach-gradient" type="submit">Sign In</MDBBtn>
                                     </div>
                                 </form>
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
                 </MDBRow>
+                {
+                    this.state.hasLoaded &&
+                    <div className='sweet-loading'>
+                        <BarLoader
+                        css={override_load}
+                        sizeUnit={"px"}
+                        height={5}
+                        width={540}
+                        color={'#E08D4F'}
+                        loading={this.state.loading}
+                        />
+                    </div> 
+                }
             </MDBContainer>
         );
     }

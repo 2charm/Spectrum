@@ -9,7 +9,7 @@ import science from '../img/science.jpg'
 //import seattle from '../img/Seattle.jpg'
 import sports from '../img/sports.jpg'
 import tech from '../img/tech.jpg'
-import us from '../img/USA.jpg'
+//mport us from '../img/USA.jpg'
 //import world from '../img/world.jpg'
 
 const CATEGORIES = ["headline", "business", "sports", "health", "entertainment", "science", "technology"]
@@ -29,8 +29,7 @@ class CenterModeCarousel extends Component {
             centerMode: true,
             autoplay: false,
             infinite: true,
-            adaptiveHeight:true,
-            centerPadding: "60px",
+            centerPadding: "0px",
             slidesToShow:5,
             focusOnSelect:true,
             speed: 500,
@@ -40,7 +39,7 @@ class CenterModeCarousel extends Component {
                   settings: {
                     arrows: false,
                     centerMode: true,
-                    centerPadding: '40px',
+                    centerPadding: '0px',
                     slidesToShow: 3
                   }
                 },
@@ -49,7 +48,7 @@ class CenterModeCarousel extends Component {
                   settings: {
                     arrows: false,
                     centerMode: true,
-                    centerPadding: '40px',
+                    centerPadding: '0px',
                     slidesToShow: 1
                   }
                 }

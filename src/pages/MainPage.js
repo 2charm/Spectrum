@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import CenterModeCarousel from './CenterModeCarousel.js'
-import NewsItem from './NewsItem.js'
-export class LandingPage extends Component {
+import CenterModeCarousel from '../components/CenterModeCarousel.js'
+import NewsItem from '../components/NewsItem.js'
+
+export class MainPage extends Component {
     constructor(props) {
-      console.log(props.articles);
       super(props);
       this.state = {
         category: "headline",
@@ -24,12 +24,13 @@ export class LandingPage extends Component {
             <div className="container">
               <CenterModeCarousel changeCategory={category => this.setState({category})}/>
               <hr className="longBar"/>
+              <h3>See related articles on the category below</h3>
             </div>
             <div className="container">
               {
                 this.props.articles[this.state.category].map((article,i) => {
                   return (
-                    <NewsItem {...article} key={i}/>
+                    <NewsItem {...article} key={i} article_id={i} category={this.state.category} isFull={false}/>
                   )
                 })
               }
@@ -40,4 +41,4 @@ export class LandingPage extends Component {
     }
   }
 
-  export default LandingPage;
+  export default MainPage;

@@ -88,10 +88,7 @@ export class UserPage extends Component {
              <div className="row">
                 <div className="card mb-3" id="user-card">
                     <div className="row no-gutters">
-                        <div className="col-md-4">
-                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className="card-img" alt="stock person"/>
-                        </div>
-                        <div className="col-md-8">
+                        <div className="col-xl-12">
                             <div className="card-body">
                                 <h5 className="card-title">{sessionStorage.getItem('username') + "'s Profile"}</h5>
                                 <p className="card-text">This will be a short summary of the user's general usage of Spectrum news and how much news they are reading from each category.</p>
