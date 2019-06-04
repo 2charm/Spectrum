@@ -116,22 +116,7 @@ export class UserPage extends Component {
         return (
            <div className="container">
              <div className="row user-intro">
-               
-                 <h3>{"Hi, " + sessionStorage.getItem('username') + "! Here are some of your reading habits for the last week."}</h3>
-                {/* <div className="card mb-3" id="user-card">
-                    <div className="row no-gutters">
-                        <div className="col-xl-3">
-                          <img src={news}/>
-                        </div>
-                        <div className="col-xl-9">
-                            <div className="card-body">
-                                <h5 className="card-title">{sessionStorage.getItem('username') + "'s Profile"}</h5>
-                                <p className="card-text">This will be a short summary of the user's general usage of Spectrum news and how much news they are reading from each category.</p>
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+              <h3>{"Hi, " + sessionStorage.getItem('username') + "! Here are some of your reading habits for the last week."}</h3>
              </div>
              <hr className="shortBar"/>
              <div className="row">

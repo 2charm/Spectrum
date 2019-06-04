@@ -8,6 +8,7 @@ import {MainPage} from './pages/MainPage.js';
 import {LandingPage} from './pages/LandingPage.js'
 import { css } from '@emotion/core';
 import { BeatLoader } from 'react-spinners';
+import spectrumhome from './img/spectrum-home.png';
 import BackToTop from "react-back-to-top-button";
 import './App.css';
 
@@ -83,14 +84,6 @@ class App extends Component {
     
   }
 
-  showModal() {
-    this.setState({show:true});
-  }
-
-  hideModal() {
-    this.setState({show:false});
-  }
-
   render() {
     if(!this.state.isLoaded) {
       return (
@@ -140,6 +133,7 @@ export class NavBar extends Component {
     if(!this.props.isLoggedIn) {
       return (
         <div className="nav-scroller py-1 mb-2">
+          <NavLink exact to="/" className="spectrum-home"><img src={spectrumhome} alt="home"/></NavLink>
           <nav className="nav d-flex">
             <NavLink  exact to="/" className="p-2 text-muted">Home</NavLink>
             <NavLink  exact to="/login" className="p-2 text-muted">Login</NavLink>
@@ -151,6 +145,7 @@ export class NavBar extends Component {
     } else {
       return (
         <div className="nav-scroller py-1 mb-2">
+          <NavLink exact to="/" className="spectrum-home"><img src={spectrumhome} alt="home"/></NavLink>
         <nav className="nav d-flex">
           <NavLink  exact to="/" className="p-2 text-muted">Home</NavLink>
           <NavLink  exact to="/user" className="p-2 text-muted">{sessionStorage.getItem('username')}</NavLink>

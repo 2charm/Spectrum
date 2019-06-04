@@ -258,6 +258,11 @@ label {
   font-style: italic;
 }
 
+.spectrum-home {
+  position: absolute;
+  left:1rem;
+}
+
 @media (max-width:1200px) {
   .slick-slide img {
     min-width: 150px;
