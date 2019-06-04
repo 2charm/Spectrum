@@ -10,6 +10,11 @@ body {
 
 }
 
+p {
+  margin-bottom:.5rem;
+  font-size: 1.25rem;
+}
+
 .nav-scroller {
   position: relative;
 }
@@ -30,24 +35,45 @@ h3 {
   font-weight: 800;
 }
 
-h3:nth-of-type(1) {
-  margin-top: 1.5rem;
+/* News Items */
+
+#news-container {
+  border-top: 2px solid #f1f1f1;
+  padding-top: 1.2rem;
+  padding-bottom: 1.5rem;
 }
 
-h3:nth-of-type(2) {
-  margin-bottom: 2.5rem;
+#news-content {
+  position: relative;
 }
 
 .news-title {
+  text-align: left;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
   color: #3F4C50;
 }
+
+.source-name {
+  text-align: left;
+  font-size: 1.3rem;
+  font-style: oblique;
+  color: #3F4C50;
+}
+
+/* Carousel Elements */
 
 .slider {
   margin-bottom: 2rem;
 }
 
 .slick-slide img {
+  margin-left: auto; 
+  margin-right: auto;
   opacity: .4;
+  min-width: 190px;
 }
 
 .slick-slide .slick-center {
@@ -57,7 +83,7 @@ h3:nth-of-type(2) {
 
 .slick-slide.slick-center img {
   opacity: 1;
-  transform: scale(1.25);
+  transform: scale(1.2);
 }
 
 .slick-dots {
@@ -77,23 +103,19 @@ h3:nth-of-type(2) {
   color: #F8F8F8;
   font-weight: bold;
   top:10px;
+  left:28px;
   position: absolute;
   width: 75%;
   z-index: 2;
 }
 
+
+/* Orange Bars */
 hr {
   background: #E08D4F;
   height  : .5rem;
 }
 
-#news-container {
-  border-bottom: 2px solid #f1f1f1;
-}
-
-#news-content {
-  position: relative;
-}
 
 .shortBar {
   margin-top:2rem;
@@ -102,19 +124,27 @@ hr {
 
 .longBar {
   margin-top:5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
-h2 {
-  text-align: left;
+.full-spectrum-icon {
+  max-width: 30px;
+  max-height: 30px;
+  margin-left: 1rem;
 }
 
-p {
-  text-align: left;
+.full-spectrum-text {
+  margin-left:.5rem;
 }
+
+/* Text on page adjustments */
 
 a {
-  color: white;
+ color: black;
+}
+
+a:hover {
+  color: gray;
 }
 
 .card img {
@@ -123,27 +153,12 @@ a {
   object-fit: cover;
 }
 
-.about-text {
-  color:white;
-  margin-top:2rem;
-}
-
 label {
   color: white;
 }
 
-#no-picture {
-  margin-top:2.2rem;
-  margin-left: 2.9rem;
-}
-
 .card {
   margin-top:3rem;
-}
-
-.reveal-articles {
-  background-color: black;
-  border-color: black;
 }
 
 .logo-img {
@@ -151,11 +166,100 @@ label {
   margin-top:1.425em;
 }
 
-#arrow-down {
-  width: 5rem;
+.profile-img {
+  max-width: 200px;
+  max-height: 200px;
+  display: block;
+  margin: auto;
+  margin-top: 2rem;
 }
 
-@media (max-width: 900px) {
+.profile-name {
+  display: block;
+  margin:auto;
+  margin-top:2rem;
+}
+
+.image-row {
+  margin-top: 2rem;
+  display: block;
+  margin: auto;
+}
+
+.btn-warning {
+  background-color: #E08D4F !important;
+}
+
+#gray-container {
+  background-color: #F8F8F8;
+}
+
+#white-container, #gray-container {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
+#landing-background {
+  background-image: url("img/landing-image.jpg");
+  margin-top: 4rem;
+  background-repeat: no-repeat; 
+  padding: 15rem;
+  background-size: 1366px 796px;
+}
+
+.landing-title, .description-body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.landing-title {
+  font-weight: 800;
+  margin-top: 2rem;
+}
+
+.description-row {
+  padding:2rem;
+}
+
+.description-body {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+#intro {
+  position: relative;
+  bottom:120px;
+}
+
+.center-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.25rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-bottom: 3rem;
+}
+
+.article-desc {
+  font-size: 1.1rem;
+  padding-top: .7rem;
+  padding-bottom:1.2rem;
+}
+
+.timestamp {
+  position: absolute;
+  font-size: 1rem;
+  right: 1rem;
+  font-style: italic;
+}
+
+@media (max-width:1200px) {
+  .slick-slide img {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 1000px) {
   .display-1 {
     font-weight: 500;
     font-size: 4rem;
@@ -163,10 +267,25 @@ label {
   h3 {
     font-size: 1.5rem;
   }
+  .slick-slide img {
+    min-width: 120px;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .slick-slide img {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 500px) {
   h3 {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slick-slide img {
+
   }
 }
